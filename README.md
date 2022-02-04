@@ -715,7 +715,7 @@ Inspec the page to better understand the HTML structure we have build.
 ## API and HTTP Requests
 
 Now we going to look at extending our boilerplate to get information from an API.
-In the next and final example we will look at the complete Create, Read, Update and Delete (CRUD) functionality.
+In a future example we will look at the complete Create, Read, Update and Delete (CRUD) functionality.
 
 Make a copy of the current folder `example04` and call it `example05`. Then open it in Visual Studio Code.
 Don't forget to change the title to **Example 05**.
@@ -925,7 +925,7 @@ function setAppState(newState: State): void {
 
 Now we need to write a new function to get our record from the API and return a TaskEntity that we can put into the currentTask in the state.
 
-First I define the url and an arbitray task id.
+First I define the url and a task id.
 
 ```
 const TASKS_API: string = "https://taskmanager01-api.herokuapp.com/tasks";
@@ -1085,3 +1085,8 @@ main_div.appendChild(body_div);
 top_div.appendChild(main_div);
 app?.appendChild(top_div);
 ```
+
+## CRUD
+
+For example 6 we are going to look at the complete Create, Read, Update and Delete (CRUD) functionality.
+To be written.
