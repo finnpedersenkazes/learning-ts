@@ -422,21 +422,21 @@ The State is often refered to as the Model in Design Patterns like Model View Co
 What is State? Some examples.
 - The light is on or off.
 - A coin is either head or tail.
-- A dices has the values 1, 2, 3, 4, 5, or 6.
+- A dices on the table shows one of these values 1, 2, 3, 4, 5, or 6.
 
 There is one rule to observe and this is very important. Your application must never get into an illegal state.
 We are going to observe that illegal states are impossible.
 
-The reason is that quite often bugs, unexpected behavious and erros are all due to your application getting into some kind of unforseen state.
-So having control over your state is a fundamental condition for having a robust application.
+The reason is that quite simple: Bugs, unexpected behavious and errors are all due to your application getting into some kind of unforseen state.
+So having control over your state is a fundamental condition for having a **robust application**.
 
-That does not mean that everything is alwasy going as expected, but we are planning for it.
-A failed state might also be a legal state, as opposed to an illegal state.
+That does not mean that everything is always going as expected, but we are planning for it.
+A failed state might be OK, as opposed to an illegal state.
 
 
 ### Example 04
 
-This example will extend out boilerplate to handle the state of the application.
+This example will extend our boilerplate to handle the state of the application.
 We will continue with this pattern in the following examples.
 
 Our application in example 4 will consist of a button that we can click and a simple text displaying our favorite programming language.
@@ -480,7 +480,7 @@ We will keep this pattern in the following examples.
 To keep track of our state we are going to use the `sessionStorage` functionality.
 
 We need to be able to initialize the state, get the state and set the state to a new value.
-These functions help us just that. Plus a function to report what state we are in to the console.log if we need to debug what is going on.
+These functions help us with just that. Plus a function to report what state we are in to the console.log if we need to debug what is going on.
 
 ```
 // This is the key to the storage. It must be unique. Do not change.
@@ -520,6 +520,17 @@ function reportState(where: string, state: State): void {
 ```
 
 Then we need to be able to update our state when we click the button and we need a helper function to compare states with each other.
+
+Of cause it would have been nice to write
+
+```
+function sameState(state1: State, state2: State): boolean {
+   return (state1 == state2);
+}
+
+```
+
+But that is not how the world works. We have to be explicit about what it means to compare two states. And compare of objects in JavaScript is a chapter in itself.
 
 ```
 function sameState(state1: State, state2: State): boolean {
@@ -598,7 +609,7 @@ The important part here is that we have a static part, an event part and a dynam
 - On our `button` we add an event listener: `button.addEventListener("click", updateState);`
 - On our `body_text` we add an identifyer so that we can find it again: `body_text.setAttribute("id", "display_state")`
 
-Finally we need the two missing pieces. To initiaqlize the view and to update the view.
+Finally we need the two missing pieces. To initialize the view and to update the view.
 
 
 ```
@@ -795,7 +806,7 @@ That is our plan.
 
 #### The Task Entity
 
-Start by defining the type TaskEntity and create an initialTask. The initialTask is like the 0 of a number or "" of a string.
+Start by defining the type TaskEntity and create an initialTask. The initialTask is like the number zero or the empty string.
 
 ```
 // Task entity
