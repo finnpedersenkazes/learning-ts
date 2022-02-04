@@ -29,7 +29,6 @@ We still need techology for making our apps run, but we will keep it as simple a
 
 - Programming Language: [TypeScript](https://www.typescriptlang.org/)
 - JavaScript runtime: [Node.js](https://nodejs.org/en/)
-- Frontend Framework: [Preact](https://preactjs.com/)
 
 
 ### Work environment.
@@ -79,9 +78,6 @@ And you should see this.
 - [Installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html)
 
 ### Bootstrap
-We will get back to this later.
-
-### Preact.js
 We will get back to this later.
 
 ## Boilerplate
