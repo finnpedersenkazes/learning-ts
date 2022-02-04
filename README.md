@@ -72,7 +72,7 @@ code .
 
 And you should see this.
 
-![Image of Visual Studio Code Get Started](images/TS01.PNG)
+![Image of Visual Studio Code Get Started](images/TS01.png)
 
 ### TypeScript
 
@@ -110,7 +110,7 @@ tsc --init
 
 This will create a new file `tsconfig.json` in the root of our project folder. It is a bit overwhelming, but we will take it step by step.
 
-![Image of tsconfig.json](images/TS02.PNG)
+![Image of tsconfig.json](images/TS02.png)
 
 Now we need to tell the TypeScript compiler to find our source program in the `src` folder.
 
@@ -211,13 +211,13 @@ Between `<body>` and `</body>` insert this line
 
 Select the index.html file on the right, select the Run menu, then  select Run Without Debugging or press Ctrl+F5.
 
-![Image of Run without debugging](images/TS03.PNG)
+![Image of Run without debugging](images/TS03.png)
 
 Congratulations!
 
 Your boilerplate is ready and you now know how to setup a TypeScript program that runs in the browser. We will use this in each of the following examples that we are going to program.
 
-![Image of browser with test Hello](images/TS04.PNG)
+![Image of browser with test Hello](images/TS04.png)
 
 
 ## DOM Manipulation
@@ -278,13 +278,13 @@ tsc --removeComments
 
 And look at the generated `main.js` file.
 
-![Image of main.js file](images/TS05.PNG)
+![Image of main.js file](images/TS05.png)
 
 Now select the index.html filed and run the file with Ctrl+F5.
 
 Open it with Chrome, right click on the page and choose Inspect.
 
-![Image of inspect on index.html file](images/TS06.PNG)
+![Image of inspect on index.html file](images/TS06.png)
 
 Now we can see the generated HTML and see that the `<p>` tag was insert inside the `<div>` tag.
 
@@ -398,11 +398,11 @@ app?.appendChild(p3);
 
 Functions in color.
 
-![Image of functions in color](images/TS07.PNG)
+![Image of functions in color](images/TS07.png)
 
 Result in black and white.
 
-![Image of result in black and white](images/TS08.PNG)
+![Image of result in black and white](images/TS08.png)
 
 
 ## State of the Application
@@ -635,11 +635,11 @@ function updateView(): void {
 
 Now run the application.
 
-![Image of result in black and white](images/TS09.PNG)
+![Image of result in black and white](images/TS09.png)
 
 Click.
 
-![Image of result in black and white](images/TS10.PNG)
+![Image of result in black and white](images/TS10.png)
 
 
 ## Bootstrap
@@ -709,11 +709,11 @@ app?.appendChild(top_div);
 
 Run the app.
 
-![Image of result in black and white](images/TS11.PNG)
+![Image of result in black and white](images/TS11.png)
 
 Inspec the page to better understand the HTML structure we have build.
 
-![Image of result in black and white](images/TS12.PNG)
+![Image of result in black and white](images/TS12.png)
 
 
 ## API and HTTP Requests
@@ -787,11 +787,18 @@ Now you get just the one task.
 
 In this example, our task is to read this one record and present it to the user.
 
+![Image of Welcome screen](images/TS13.png)
+
+When pressing the button, you should get this.
+
+![Image of first tsk](images/TS14.png)
+
+Source of data: The world famous **Faker**.
+
+
 ### Extending the state
 
 We are going to introduce a new type Task and extent the state with it.
-We are not removing the favorite_language from the state until the very end.
-This will allow us to enhance our example step by step. If we removed it now, everything would brake.
 
 These are the steps
 - Introduce the new entity Task
@@ -802,7 +809,7 @@ These are the steps
 - Develop our new view function
 - remove the favorite_language from the state.
 
-That is our plan.
+This is the plan.
 
 #### The Task Entity
 
@@ -841,51 +848,244 @@ const initialTask: TaskEntity = {
 }
 ```
 
-Extend the State with with a `current_task` of type `TaskEntity`.
+Extend the State with with a `current_task` of type `TaskEntity` and a new `app_state`.
+The app_state completes the success value with more information.
+It basically defines the four legal states our app can be in.
 
 ```
-// The type of the state. This will change from app to app.
+type AppStates = "start" | "fetchingTask" | "gotTask" | "error" ;
+```
+
+Now our state looks like this:
+
+```
 type State = {
     success: boolean,
+    app_state: AppStates,
     current_task: TaskEntity,
-    favorite_language: string,
     error_message: string
 };
 
 ```
-Extend our three legal states with `current_task: initialTask,`.
 
+We define two known states. The initial state and the failed state, if something goes wrong with getting the state from the session storage.
 
 ```
-// Define the only possible states the app can be in.
-const legalState1: State = {
-    success: true,
-    current_task: initialTask,
-    favorite_language: "JavaScript",
-    error_message: ""
-};
-const legalState2: State = {
-    success: true,
-    current_task: initialTask,
-    favorite_language: "Python",
-    error_message: ""
-};
+// Define the failed states the app can be in.
 const failedState: State = {
     success: false,
+    app_state: "error",
     current_task: initialTask,
-    favorite_language: "",
     error_message: "Did not get state from session storage."
 };
 
-
 // Define the initial state that the app is starting in. Change it.
-const initialState: State = legalState1;
+const initialState: State = {
+    success: true,
+    app_state: "start",
+    current_task: initialTask,
+    error_message: ""
+};
 ```
 
-Compile and run to see that nothing is broken.
+### Set App State
 
-### HTTP GET
+The setAppState function is our watching over our state and ensures that we do not get into an illigal state.
+
+An illigal state would, for example, be to have success == true while having an error message.
+
+It is only in the `gotTask` state that we have a `current_task` and it is only in the `error` state that we have an `error_message`.
+
+```
+function setAppState(newState: State): void {
+    switch (newState.app_state) {
+        case "start":
+        case "fetchingTask": {
+            newState.success = true;
+            newState.error_message = "";
+            newState.current_task = initialTask;
+            break;
+        }
+
+        case "gotTask": {
+            newState.success = true;
+            newState.error_message = "";
+            break;
+        }
+
+        case "error": {
+            newState.success = false;
+            newState.current_task = initialTask;
+            break;
+        }
+    }
+
+    let newStateJSON: string = JSON.stringify(newState);
+    sessionStorage.setItem(storageKey,  newStateJSON);
+};
+
+```
+### HTTP GET Request
 
 Now we need to write a new function to get our record from the API and return a TaskEntity that we can put into the currentTask in the state.
 
+First I define the url and an arbitray task id.
 
+```
+const TASKS_API: string = "https://taskmanager01-api.herokuapp.com/tasks";
+let TASK_ID: number = 195; // Starting somewhere in the list
+```
+
+Then the loadTask function that will attempt to get the task from the API.
+
+If the fetch function returns a json response we update our state with the task and changes the `app_state` to `gotTask`.
+Should the fetch fail, for example if you have no intenet access, then we update our state with an error message and changes the `app_state` to `error`.
+
+```
+function loadTask(id: number): void {
+    let url: string = `${TASKS_API}/${TASK_ID}`;
+    let newState: State = getAppState();
+    newState.app_state = "fetchingTask";
+    setAppState(newState);
+    updateView(newState);
+
+    fetch(url, {
+        method: 'GET', // default
+    })
+        .then(function(response: Response): Promise<object> {
+            return response.json()
+        })
+        .then(function(data: object): void {
+            let taskEntity: TaskEntity = formatTaskEntity(data);
+            newState.app_state = "gotTask";
+            newState.current_task = taskEntity;
+            setAppState(newState);
+            updateView(newState);
+        })
+        .catch(function(error): void {
+            newState.app_state = "error";
+            newState.error_message = error;
+            setAppState(newState);
+            updateView(newState);
+        })
+}
+```
+
+And finally the `getTask` that is going to be called when we click the button.
+
+```
+function getTask(): void {
+    loadTask(TASK_ID);
+    TASK_ID++ // Look for next task
+}
+```
+
+The `updateView` function is also completely new. Now we set the **title** and **body** depending on the `app_state`.
+
+
+```
+function updateView(currentState: State): void {
+    let new_title_text: HTMLElement | null = document.getElementById("display_title")
+    let new_body_text: HTMLElement | null = document.getElementById("display_description")
+
+    if (new_title_text && new_body_text) {
+        switch (currentState.app_state) {
+            case "start": {
+                new_title_text.textContent = "Welcome again";
+                new_body_text.textContent = "Press the button to get a task.";
+                break;
+            }
+
+            case "fetchingTask": {
+                new_title_text.textContent = "Fetching Task";
+                new_body_text.textContent = "Please be patient.";
+                break;
+            }
+
+            case "gotTask": {
+                new_title_text.textContent = currentState.current_task.title;
+                new_body_text.textContent = currentState.current_task.description;
+                break;
+            }
+
+            case "error": {
+                new_title_text.textContent = "Ups ...";
+                new_body_text.textContent = currentState.error_message;
+                break;
+            }
+        }
+    } else {
+        reportState('updateView', currentState);
+    }
+}
+```
+
+Finally I have build a set of helper functions to build my html elements.
+
+```
+function mkButton(element: HTMLElement, text: string, action: () => void): void {
+    element.textContent = text;
+    element.addEventListener("click", action);
+    element.setAttribute("type", "button");
+    element.setAttribute("class", "btn btn-primary");
+    element.setAttribute("style", "margin:15px;");
+}
+
+function mkContainer(element: HTMLElement): void {
+    element.setAttribute("class", "container");
+}
+
+function mkCard(element: HTMLElement): void {
+    element.setAttribute("class", "card");
+}
+
+function mkCardBody(element: HTMLElement): void {
+    element.setAttribute("class", "card-body");
+}
+
+function mkCardTitle(element: HTMLElement, text: string): void {
+    element.setAttribute("id", "display_title");
+    element.setAttribute("class", "card-title");
+    element.textContent = text;
+}
+
+function mkCardDescription(element: HTMLElement, text: string): void {
+    element.setAttribute("id", "display_description")
+    element.setAttribute("class", "card-text");
+    element.textContent = text;
+}
+```
+
+And now the definition of the HTML elements looks a bit simpler.
+
+```
+// Initialize the application
+initAppState();
+
+// 1. Select the div element using the id property
+const app = document.getElementById("app");
+
+// 2. Create new elements programmatically
+const top_div: HTMLElement = document.createElement("div");
+const main_div: HTMLElement = document.createElement("div");
+const title_h1: HTMLElement = document.createElement("h1");
+const body_div: HTMLElement = document.createElement("div");
+const body_text: HTMLElement = document.createElement("h2");
+const button: HTMLElement = document.createElement("button");
+
+// 3. Add the text content and attributes
+mkContainer(top_div);
+mkCard(main_div);
+mkCardBody(body_div);
+mkCardTitle(title_h1, "Welcome!");
+mkCardDescription(body_text, "Press the button to get a task.");
+mkButton(button, "Get Task", getTask);
+
+// 4. Append the elements together
+body_div.appendChild(title_h1);
+body_div.appendChild(body_text);
+body_div.appendChild(button);
+main_div.appendChild(body_div);
+top_div.appendChild(main_div);
+app?.appendChild(top_div);
+```
