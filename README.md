@@ -2,17 +2,17 @@
 An introduction to TypeScript for the Application Developer.
 
 ## Introduction
-The world of business applications is roughly split in three. 
+The world of business applications is roughly split in three.
 
 - Technology behind the scenes: Never seen by the user.
 - Application Development: User focused business logic.
-- The surface of buttons and fields seen by the user. 
+- The surface of buttons and fields seen by the user.
 
-This article will focus entirely on writing business logic with TypeScript. 
+This article will focus entirely on writing business logic with TypeScript.
 
 ### TypeScript
 
-Before using a new language we have to get a bit familiar with the language syntax and basics. 
+Before using a new language we have to get a bit familiar with the language syntax and basics.
 
 - [TypeScript for Java/C# Prograammers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html)
 - [TypeScript for Functional Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html)
@@ -20,7 +20,7 @@ Before using a new language we have to get a bit familiar with the language synt
 - [TypeScript Cheat Sheets](https://www.typescriptlang.org/cheatsheets)
 
 ### A nice UI for Business Apps
-Focusing on business logic does not mean that we don't care for a 
+Focusing on business logic does not mean that we don't care for a
 beautiful user interface, but it means that we will simply be using
 [Bootstrap](https://getbootstrap.com/). These friendly looking buttons are used all over the internet and that is why it looks familiar. The structure of the app is defined in [HTML](https://www.w3schools.com/html/).
 
@@ -32,25 +32,25 @@ We still need techology for making our apps run, but we will keep it as simple a
 - Frontend Framework: [Preact](https://preactjs.com/)
 
 
-### Work environment. 
-- OS: Windows and MacOS. 
+### Work environment.
+- OS: Windows and MacOS.
 - Editor: [Visual Studio Code](https://code.visualstudio.com/)
 
 ## Installation and Setting up
 
 ### Setup a working folder
 
-Create a new folder `learning-ts` for your woking projects. All the example projects will be places in this folder. 
+Create a new folder `learning-ts` for your woking projects. All the example projects will be places in this folder.
 
 ### Terminal
 
-We will use the terminal in Visual Studio Code. 
+We will use the terminal in Visual Studio Code.
 
 ### JavaScript Runtime
-To run our code we need a JavaScript runtime. 
+To run our code we need a JavaScript runtime.
 
 Chances are that Node.js is allready installed on your computer.
-Check the version by writing `node -v` or `node --version` in the terminal. 
+Check the version by writing `node -v` or `node --version` in the terminal.
 
 ```
 $ node --version
@@ -58,11 +58,11 @@ v16.13.1
 
 ```
 
-If you don't have it, go to https://nodejs.org/en/ and install it. 
+If you don't have it, go to https://nodejs.org/en/ and install it.
 
 
 ### The Editor and Integrated Development Environment
-To write our we need an editor and to assist us in getting it right we need an Integrated Development Environment (IDE). [Visual Studio Code](https://code.visualstudio.com/) has everything we need. 
+To write our we need an editor and to assist us in getting it right we need an Integrated Development Environment (IDE). [Visual Studio Code](https://code.visualstudio.com/) has everything we need.
 
 In the terminal, navigate to your working folder and type `code` followed by a space and a point. Like this:
 
@@ -70,34 +70,34 @@ In the terminal, navigate to your working folder and type `code` followed by a s
 code .
 ```
 
-And you should see this. 
+And you should see this.
 
-![Image of Visual Studio Code Get Started](images/TS01.png)
+![Image of Visual Studio Code Get Started](images/TS01.PNG)
 
 ### TypeScript
 
 - [Installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html)
 
 ### Bootstrap
-We will get back to this later. 
+We will get back to this later.
 
 ### Preact.js
-We will get back to this later. 
+We will get back to this later.
 
 ## Boilerplate
 
-Let's get our first TypeScipt example up and running. 
+Let's get our first TypeScipt example up and running.
 
-Before we can start on writing the actual program and focus on business logic, we need an environment consisting of a few files and a few folders with very specific names. We call this a boilerplate and we will use it for each new example. 
+Before we can start on writing the actual program and focus on business logic, we need an environment consisting of a few files and a few folders with very specific names. We call this a boilerplate and we will use it for each new example.
 
 We will create files and folders one by one in this section.
 
 
 ### Example 01
 
-From Visual Studio Code choose to create an `example01` folder in the leaning-ts folder. 
+From Visual Studio Code choose to create an `example01` folder in the leaning-ts folder.
 
-- Create a `src` folder inside the example01 folder. 
+- Create a `src` folder inside the example01 folder.
 - Create a `main.ts` file inside the src folder.
 
 This is where we are going to program our TypeScript application.
@@ -108,13 +108,13 @@ Now we need to initialize our TypeScript project. We do this with the command.
 tsc --init
 ```
 
-This will create a new file `tsconfig.json` in the root of our project folder. It is a bit overwhelming, but we will take it step by step. 
+This will create a new file `tsconfig.json` in the root of our project folder. It is a bit overwhelming, but we will take it step by step.
 
-![Image of tsconfig.json](images/TS02.png)
+![Image of tsconfig.json](images/TS02.PNG)
 
-Now we need to tell the TypeScript compiler to find our source program in the `src` folder. 
+Now we need to tell the TypeScript compiler to find our source program in the `src` folder.
 
-We do this by adding `"include": ["src/**/*"]` at the end of the file. Notice the comma behind the curly bracket just before. 
+We do this by adding `"include": ["src/**/*"]` at the end of the file. Notice the comma behind the curly bracket just before.
 
 ```
   },
@@ -127,16 +127,16 @@ Then we need to tell the TypeScript compiler where to put the result
 In the file, find the line that says `outDir` and change the line to:
 
 ```
-"outDir": "dist", 
+"outDir": "dist",
 ```
 
-Don't forget to remove the `//` signs in front. 
+Don't forget to remove the `//` signs in front.
 
-Now let us test that it works. 
+Now let us test that it works.
 
 ### A little bit of TypeScript code
 
-Copy this into your `main.ts` file and save it. 
+Copy this into your `main.ts` file and save it.
 
 ```
 function greeter(person: string) {
@@ -152,7 +152,7 @@ From the terminal run the TypeScript compiler:
 tsc
 ```
 
-You should now have a new folder `dist` with a new file in it `main.js`. 
+You should now have a new folder `dist` with a new file in it `main.js`.
 
 It should look like this.
 
@@ -165,12 +165,12 @@ var user = "James Webb";
 document.body.textContent = greeter(user);
 ```
 
-The generated code is the same, except that the person parameter in the greeter function lost its type declaration `: string`. That is the difference between TypeScript and JavaScript. 
+The generated code is the same, except that the person parameter in the greeter function lost its type declaration `: string`. That is the difference between TypeScript and JavaScript.
 
 
-Now we are ready to add the `index.html` file to the project, so that we can run in the browser. 
+Now we are ready to add the `index.html` file to the project, so that we can run in the browser.
 
-Create the `index.html` in the root of the project folder. 
+Create the `index.html` in the root of the project folder.
 
 In the first line as the first character type an esclamation mark ! followed by a press on the TAB or Enter key.
 
@@ -191,17 +191,17 @@ becomes
     <title>Document</title>
 </head>
 <body>
-    
+
 </body>
 </html>
-``` 
+```
 
 Change `<title>Document</title>` to `<title>Example 01</title>`
 
 
-To run our program from the browser we have to point to our generated JavaScript file. 
+To run our program from the browser we have to point to our generated JavaScript file.
 
-Between `<body>` and `</body>` insert this line 
+Between `<body>` and `</body>` insert this line
 
 ```
 <body>
@@ -209,40 +209,40 @@ Between `<body>` and `</body>` insert this line
 </body>
 ```
 
-Select the index.html file on the right, select the Run menu, then  select Run Without Debugging or press Ctrl+F5. 
+Select the index.html file on the right, select the Run menu, then  select Run Without Debugging or press Ctrl+F5.
 
-![Image of Run without debugging](images/TS03.png)
+![Image of Run without debugging](images/TS03.PNG)
 
 Congratulations!
 
-Your boilerplate is ready and you now know how to setup a TypeScript program that runs in the browser. We will use this in each of the following examples that we are going to program. 
+Your boilerplate is ready and you now know how to setup a TypeScript program that runs in the browser. We will use this in each of the following examples that we are going to program.
 
-![Image of browser with test Hello](images/TS04.png)
+![Image of browser with test Hello](images/TS04.PNG)
 
 
 ## DOM Manipulation
 
 We need to take control of the Document Object Model [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) so we can implement our application.
 
-So we are going to extend our boilerplate. 
+So we are going to extend our boilerplate.
 
 ### Example 02
 
-Make a copy of the folder `example01` and call it `example02`. Then open it in Visual Studio Code. 
+Make a copy of the folder `example01` and call it `example02`. Then open it in Visual Studio Code.
 Don't forget to change the title to **Example 02**.
 
-We are going to use the example from [DOM Manipulation](https://www.typescriptlang.org/docs/handbook/dom-manipulation.html). 
+We are going to use the example from [DOM Manipulation](https://www.typescriptlang.org/docs/handbook/dom-manipulation.html).
 
-Open the `index.html` file and insert the following line right after the `<body>` tag and before the `<script>` tag. 
+Open the `index.html` file and insert the following line right after the `<body>` tag and before the `<script>` tag.
 
 ```
 <body>
     <div id="app"></div>
     <script src="dist/main.js"></script>
 </body>
-``` 
+```
 
-The `id="app"` gives us a handle in the DOM. An elelement we know exists and that we can hold on to from our TypeScript app. 
+The `id="app"` gives us a handle in the DOM. An elelement we know exists and that we can hold on to from our TypeScript app.
 
 Save the index.html file and open the `main.ts` file.
 
@@ -252,7 +252,7 @@ We are going to replace this
 document.body.textContent = greeter(user);
 ```
 
-with this 
+with this
 
 ```
 // 1. Select the div element using the id property
@@ -268,9 +268,9 @@ p.textContent = greeter(user);
 app?.appendChild(p);
 ```
 
-In Visual Studio Code choose the Terminal menu and choose New Terminal. 
+In Visual Studio Code choose the Terminal menu and choose New Terminal.
 
-Then compile the TypeScript without comments with this command. 
+Then compile the TypeScript without comments with this command.
 
 ```
 tsc --removeComments
@@ -278,21 +278,21 @@ tsc --removeComments
 
 And look at the generated `main.js` file.
 
-![Image of main.js file](images/TS05.png)
+![Image of main.js file](images/TS05.PNG)
 
 Now select the index.html filed and run the file with Ctrl+F5.
 
-Open it with Chrome, right click on the page and choose Inspect. 
+Open it with Chrome, right click on the page and choose Inspect.
 
-![Image of inspect on index.html file](images/TS06.png)
+![Image of inspect on index.html file](images/TS06.PNG)
 
 Now we can see the generated HTML and see that the `<p>` tag was insert inside the `<div>` tag.
 
 ## String Manipulation in TypeScript
 
-Before developing more fancy web applications, we want to understand how to use variables of different types and manipulation of these in TypeScript. 
+Before developing more fancy web applications, we want to understand how to use variables of different types and manipulation of these in TypeScript.
 
-Therefore we will develop a function and test some examples and writing the results to the web page. 
+Therefore we will develop a function and test some examples and writing the results to the web page.
 
 ### Example 03
 
@@ -322,10 +322,10 @@ Output: w
 
 ### Example 03
 
-Make a copy of the folder `example02` and call it `example03`. Then open it in Visual Studio Code. 
+Make a copy of the folder `example02` and call it `example03`. Then open it in Visual Studio Code.
 Don't forget to change the title to **Example 03**.
 
-Solution: 
+Solution:
 
 ```
 // Functions
@@ -398,67 +398,67 @@ app?.appendChild(p3);
 
 Functions in color.
 
-![Image of functions in color](images/TS07.png)
+![Image of functions in color](images/TS07.PNG)
 
 Result in black and white.
 
-![Image of result in black and white](images/TS08.png)
+![Image of result in black and white](images/TS08.PNG)
 
 
 ## State of the Application
 
-We want action! Buttons to press. Things to happen. 
+We want action! Buttons to press. Things to happen.
 
-In this example we will create a simple app with a button to press and toggle between two states. 
+In this example we will create a simple app with a button to press and toggle between two states.
 
-Make a copy of the folder `example02` and call it `example04`. Then open it in Visual Studio Code. 
+Make a copy of the folder `example02` and call it `example04`. Then open it in Visual Studio Code.
 Don't forget to change the title to **Example 04**.
 
 ### Application State
-The purpose of this exercise is to demonstrate control over the state of the application. 
+The purpose of this exercise is to demonstrate control over the state of the application.
 
 The State is often refered to as the Model in Design Patterns like Model View Controler (MVC) or Model View Update (MVU).
 
-What is State? Some examples. 
-- The light is on or off. 
-- A coin is either head or tail. 
+What is State? Some examples.
+- The light is on or off.
+- A coin is either head or tail.
 - A dices has the values 1, 2, 3, 4, 5, or 6.
 
-There is one rule to observe and this is very important. Your application must never get into an illegal state. 
-We are going to observe that illegal states are impossible. 
+There is one rule to observe and this is very important. Your application must never get into an illegal state.
+We are going to observe that illegal states are impossible.
 
-The reason is that quite often bugs, unexpected behavious and erros are all due to your application getting into some kind of unforseen state. 
-So having control over your state is a fundamental condition for having a robust application. 
+The reason is that quite often bugs, unexpected behavious and erros are all due to your application getting into some kind of unforseen state.
+So having control over your state is a fundamental condition for having a robust application.
 
-That does not mean that everything is alwasy going as expected, but we are planning for it. 
-A failed state might also be a legal state, as opposed to an illegal state. 
+That does not mean that everything is alwasy going as expected, but we are planning for it.
+A failed state might also be a legal state, as opposed to an illegal state.
 
 
 ### Example 04
 
 This example will extend out boilerplate to handle the state of the application.
-We will continue with this pattern in the following examples. 
+We will continue with this pattern in the following examples.
 
-Our application in example 4 will consist of a button that we can click and a simple text displaying our favorite programming language. 
-There will only be two options `JavaScript` and `Python`. 
+Our application in example 4 will consist of a button that we can click and a simple text displaying our favorite programming language.
+There will only be two options `JavaScript` and `Python`.
 
-#### Defining the State, the legal states and the initial state. 
+#### Defining the State, the legal states and the initial state.
 
-We will start by defining the strucure of the State, the possible legal states and the initial state. 
+We will start by defining the strucure of the State, the possible legal states and the initial state.
 
 - `success: boolean` tells us if we are in a state of success or in a state of failure.
 - `favorite_language` if we are in the success state, this field contains our current favorite language.
-- `error_message` if we are in the failed state, this field contains an error message that we can present to the user. 
+- `error_message` if we are in the failed state, this field contains an error message that we can present to the user.
 
 ```
-type State = { 
+type State = {
     success: boolean,
     favorite_language: string,
     error_message: string
 };
 ```
 
-The we are going to specify three legal states the app can be in. Two success states and one failure. 
+The we are going to specify three legal states the app can be in. Two success states and one failure.
 
 ```
 const legalState1: State = { success: true, favorite_language: "JavaScript", error_message: "" };
@@ -466,25 +466,25 @@ const legalState2: State = { success: true, favorite_language: "Python", error_m
 const failedState: State = { success: false, favorite_language: "", error_message: "Did not get state from session storage." };
 ```
 
-Finaly we decide that our initial state will be the first legal state. 
+Finaly we decide that our initial state will be the first legal state.
 
 ```
 const initialState: State = legalState1;
 
 ```
 
-We will keep this pattern in the following examples. 
+We will keep this pattern in the following examples.
 
 #### Keeping the State
 
-To keep track of our state we are going to use the `sessionStorage` functionality. 
+To keep track of our state we are going to use the `sessionStorage` functionality.
 
-We need to be able to initialize the state, get the state and set the state to a new value. 
-These functions help us just that. Plus a function to report what state we are in to the console.log if we need to debug what is going on. 
+We need to be able to initialize the state, get the state and set the state to a new value.
+These functions help us just that. Plus a function to report what state we are in to the console.log if we need to debug what is going on.
 
 ```
 // This is the key to the storage. It must be unique. Do not change.
-const storageKey: string = "app_state"; 
+const storageKey: string = "app_state";
 
 // The functions we will use in all our applications. Do not change.
 function setAppState(newState: State): void {
@@ -519,7 +519,7 @@ function reportState(where: string, state: State): void {
 }
 ```
 
-Then we need to be able to update our state when we click the button and we need a helper function to compare states with each other. 
+Then we need to be able to update our state when we click the button and we need a helper function to compare states with each other.
 
 ```
 function sameState(state1: State, state2: State): boolean {
@@ -541,7 +541,7 @@ function updateState(): void {
         if (sameState(currentState, legalState1)) {
             setAppState(legalState2);
         };
-    
+
         if (sameState(currentState, legalState2)) {
             setAppState(legalState1);
         };
@@ -554,12 +554,12 @@ function updateState(): void {
 }
 ```
 
-Notice that if our current state is in an error state, then we report it and then we fix it by putting it back to the initial state. 
+Notice that if our current state is in an error state, then we report it and then we fix it by putting it back to the initial state.
 That is just a choice.
 
-Now we can initialize and update our state. 
+Now we can initialize and update our state.
 
-Finaly we are going to display the state to the user. The View in the MVC and MVU patterns. 
+Finaly we are going to display the state to the user. The View in the MVC and MVU patterns.
 
 ```
 // BUILDING OUR WEB PAGE
@@ -593,12 +593,12 @@ app?.appendChild(main_div);
 
 ```
 
-The important part here is that we have a static part, an event part and a dynamic part. 
+The important part here is that we have a static part, an event part and a dynamic part.
 
 - On our `button` we add an event listener: `button.addEventListener("click", updateState);`
 - On our `body_text` we add an identifyer so that we can find it again: `body_text.setAttribute("id", "display_state")`
 
-Finally we need the two missing pieces. To initiaqlize the view and to update the view. 
+Finally we need the two missing pieces. To initiaqlize the view and to update the view.
 
 
 ```
@@ -620,22 +620,22 @@ function updateView(): void {
         reportState('updateView', currentState);
     };
 }
-``` 
+```
 
 Now run the application.
 
-![Image of result in black and white](images/TS09.png)
+![Image of result in black and white](images/TS09.PNG)
 
 Click.
 
-![Image of result in black and white](images/TS10.png)
+![Image of result in black and white](images/TS10.PNG)
 
 
-## Bootstrap 
+## Bootstrap
 
-Now while that is very nice, feature wise, it could look a bit better and now is the time to introduce [bootstrap](https://getbootstrap.com/). 
+Now while that is very nice, feature wise, it could look a bit better and now is the time to introduce [bootstrap](https://getbootstrap.com/).
 
-Copy this line into the `<head>` tag before your title. 
+Copy this line into the `<head>` tag before your title.
 
 ```
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -654,7 +654,7 @@ You can find it [here](https://getbootstrap.com/docs/5.1/getting-started/introdu
 </head>
 
 ```
-Now open your main.ts file and update the view part with this. 
+Now open your main.ts file and update the view part with this.
 
 
 ```
@@ -698,28 +698,28 @@ app?.appendChild(top_div);
 
 Run the app.
 
-![Image of result in black and white](images/TS11.png)
+![Image of result in black and white](images/TS11.PNG)
 
-Inspec the page to better understand the HTML structure we have build. 
+Inspec the page to better understand the HTML structure we have build.
 
-![Image of result in black and white](images/TS12.png)
+![Image of result in black and white](images/TS12.PNG)
 
 
 ## API and HTTP Requests
 
-Now we going to look at extending our boilerplate to get information from an API. 
-In the next and final example we will look at the complete Create, Read, Update and Delete (CRUD) functionality. 
+Now we going to look at extending our boilerplate to get information from an API.
+In the next and final example we will look at the complete Create, Read, Update and Delete (CRUD) functionality.
 
-Make a copy of the current folder `example04` and call it `example05`. Then open it in Visual Studio Code. 
+Make a copy of the current folder `example04` and call it `example05`. Then open it in Visual Studio Code.
 Don't forget to change the title to **Example 05**.
 
 ### Example 05
 
-The API is a task manager running on a Heroku server. 
+The API is a task manager running on a Heroku server.
 
 The API: https://taskmanager01-api.herokuapp.com/tasks/
 
-Copy/paste the link to the browser. In return you get a list of tasks. 
+Copy/paste the link to the browser. In return you get a list of tasks.
 
 ```
 [
@@ -752,10 +752,10 @@ Copy/paste the link to the browser. In return you get a list of tasks.
         "updated_at": "2020-06-08T14:18:12.825Z"
     }, ...
 
-``` 
+```
 
-Now take the id from the first record and add it to the link https://taskmanager01-api.herokuapp.com/tasks/196 
-Now you get just the one task. 
+Now take the id from the first record and add it to the link https://taskmanager01-api.herokuapp.com/tasks/196
+Now you get just the one task.
 
 ```
 {
@@ -774,28 +774,28 @@ Now you get just the one task.
 }
 ```
 
-In this example, our task is to read this one record and present it to the user. 
+In this example, our task is to read this one record and present it to the user.
 
 ### Extending the state
 
-We are going to introduce a new type Task and extent the state with it. 
-We are not removing the favorite_language from the state until the very end. 
-This will allow us to enhance our example step by step. If we removed it now, everything would brake. 
+We are going to introduce a new type Task and extent the state with it.
+We are not removing the favorite_language from the state until the very end.
+This will allow us to enhance our example step by step. If we removed it now, everything would brake.
 
 These are the steps
 - Introduce the new entity Task
-- Update the State accordingly 
+- Update the State accordingly
 - Define possible states and the initial state
 - Develop the functionality that will get the first task for us
 - Develop our new update function
 - Develop our new view function
-- remove the favorite_language from the state. 
+- remove the favorite_language from the state.
 
-That is our plan. 
+That is our plan.
 
 #### The Task Entity
 
-Start by defining the type TaskEntity and create an initialTask. The initialTask is like the 0 of a number or "" of a string. 
+Start by defining the type TaskEntity and create an initialTask. The initialTask is like the 0 of a number or "" of a string.
 
 ```
 // Task entity
@@ -833,8 +833,8 @@ const initialTask: TaskEntity = {
 Extend the State with with a `current_task` of type `TaskEntity`.
 
 ```
-// The type of the state. This will change from app to app. 
-type State = { 
+// The type of the state. This will change from app to app.
+type State = {
     success: boolean,
     current_task: TaskEntity,
     favorite_language: string,
@@ -842,39 +842,39 @@ type State = {
 };
 
 ```
-Extend our three legal states with `current_task: initialTask,`. 
+Extend our three legal states with `current_task: initialTask,`.
 
 
 ```
-// Define the only possible states the app can be in. 
-const legalState1: State = { 
-    success: true, 
+// Define the only possible states the app can be in.
+const legalState1: State = {
+    success: true,
     current_task: initialTask,
-    favorite_language: "JavaScript", 
-    error_message: "" 
+    favorite_language: "JavaScript",
+    error_message: ""
 };
-const legalState2: State = { 
-    success: true, 
+const legalState2: State = {
+    success: true,
     current_task: initialTask,
-    favorite_language: "Python", 
-    error_message: "" 
+    favorite_language: "Python",
+    error_message: ""
 };
-const failedState: State = { 
-    success: false, 
+const failedState: State = {
+    success: false,
     current_task: initialTask,
-    favorite_language: "", 
-    error_message: "Did not get state from session storage." 
+    favorite_language: "",
+    error_message: "Did not get state from session storage."
 };
 
 
-// Define the initial state that the app is starting in. Change it. 
+// Define the initial state that the app is starting in. Change it.
 const initialState: State = legalState1;
 ```
 
-Compile and run to see that nothing is broken. 
+Compile and run to see that nothing is broken.
 
 ### HTTP GET
 
-Now we need to write a new function to get our record from the API and return a TaskEntity that we can put into the currentTask in the state. 
+Now we need to write a new function to get our record from the API and return a TaskEntity that we can put into the currentTask in the state.
 
 
