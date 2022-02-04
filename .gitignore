@@ -1,0 +1,9 @@
+# Distribution
+**/dist
+
+# Work in progress
+/example05
+/LanguageSyntax.md
+
+# Desktop Services Store on macOS
+**/.DS_Store
