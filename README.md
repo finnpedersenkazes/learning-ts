@@ -783,12 +783,6 @@ Now you get just the one task.
 
 In this example, our task is to read this one record and present it to the user.
 
-![Image of Welcome screen](images/TS13.png)
-
-When pressing the button, you should get this.
-
-![Image of first tsk](images/TS14.png)
-
 Source of data: The world famous **Faker**.
 
 
@@ -1086,7 +1080,17 @@ top_div.appendChild(main_div);
 app?.appendChild(top_div);
 ```
 
+Run the app again.
+
+![Image of Welcome screen](images/Welcome.png)
+
+When pressing the button, you should get this.
+
+![Image of first tsk](images/Task196.png)
+
+When pressing the button, you should get the next task.
+
 ## CRUD
 
-For example 6 we are going to look at the complete Create, Read, Update and Delete (CRUD) functionality.
+For the final and 6th example we are going to look at the complete Create, Read, Update and Delete (CRUD) functionality.
 To be written.
