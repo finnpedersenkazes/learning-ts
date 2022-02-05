@@ -217,36 +217,57 @@ function updateView(currentState: State): void {
 
 // BUILDING OUR WEB PAGE
 
-function mkButton(element: HTMLElement, text: string, action: () => void): void {
+function mkButton(text: string, action: () => void): HTMLElement {
+    let element: HTMLElement = document.createElement("button");
     element.textContent = text;
     element.addEventListener("click", action);
     element.setAttribute("type", "button");
     element.setAttribute("class", "btn btn-primary");
     element.setAttribute("style", "margin:15px;");
+    return element;
 }
 
-function mkContainer(element: HTMLElement): void {
+function mkContainer(card: HTMLElement): HTMLElement {
+    let element: HTMLElement = document.createElement("div");
     element.setAttribute("class", "container");
+    element.appendChild(card);
+    return element;
 }
 
-function mkCard(element: HTMLElement): void {
+function mkCard(cardBody: HTMLElement): HTMLElement {
+    let element: HTMLElement = document.createElement("div");
     element.setAttribute("class", "card");
+    element.appendChild(cardBody);
+    return element;
 }
 
-function mkCardBody(element: HTMLElement): void {
+function mkCardBody(
+    title: HTMLElement,
+    body: HTMLElement,
+    button: HTMLElement
+): HTMLElement {
+    let element: HTMLElement = document.createElement("div");
     element.setAttribute("class", "card-body");
+    element.appendChild(title);
+    element.appendChild(body);
+    element.appendChild(button);
+    return element;
 }
 
-function mkCardTitle(element: HTMLElement, text: string): void {
+function mkCardTitle(text: string): HTMLElement {
+    let element: HTMLElement = document.createElement("h1");
     element.setAttribute("id", "display_title");
     element.setAttribute("class", "card-title");
     element.textContent = text;
+    return element;
 }
 
-function mkCardDescription(element: HTMLElement, text: string): void {
+function mkCardDescription(text: string): HTMLElement {
+    let element: HTMLElement = document.createElement("h2");
     element.setAttribute("id", "display_description")
     element.setAttribute("class", "card-text");
     element.textContent = text;
+    return element;
 }
 
 // Initialize the application
@@ -256,25 +277,15 @@ initAppState();
 const app = document.getElementById("app");
 
 // 2. Create new elements programmatically
-const top_div: HTMLElement = document.createElement("div");
-const main_div: HTMLElement = document.createElement("div");
-const title_h1: HTMLElement = document.createElement("h1");
-const body_div: HTMLElement = document.createElement("div");
-const body_text: HTMLElement = document.createElement("h2");
-const button: HTMLElement = document.createElement("button");
+const title: HTMLElement = mkCardTitle("Welcome!");
+const description: HTMLElement = mkCardDescription("Press the button to get a task.");
+const button: HTMLElement = mkButton("Get Task", getTask);
 
-// 3. Add the text content and attributes
-mkContainer(top_div);
-mkCard(main_div);
-mkCardBody(body_div);
-mkCardTitle(title_h1, "Welcome!");
-mkCardDescription(body_text, "Press the button to get a task.");
-mkButton(button, "Get Task", getTask);
+const cardBody: HTMLElement = mkCardBody(title, description, button);
 
-// 4. Append the elements together
-body_div.appendChild(title_h1);
-body_div.appendChild(body_text);
-body_div.appendChild(button);
-main_div.appendChild(body_div);
-top_div.appendChild(main_div);
-app?.appendChild(top_div);
+const card: HTMLElement = mkCard(cardBody);
+
+const container: HTMLElement = mkContainer(card);
+
+// 3. Append the elements together
+app?.appendChild(container);
