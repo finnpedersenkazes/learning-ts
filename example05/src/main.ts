@@ -233,6 +233,13 @@ function mkButton(text: string, action: () => void): HTMLElement {
     return element;
 }
 
+function mkApplication(container: HTMLElement): void {
+    let element: HTMLElement | null = document.getElementById("app");
+    if (element) {
+        element.appendChild(container);
+    }
+}
+
 function mkContainer(card: HTMLElement): HTMLElement {
     let element: HTMLElement = document.createElement("div");
     element.setAttribute("class", "container");
@@ -279,10 +286,7 @@ function mkCardDescription(text: string): HTMLElement {
 // Initialize the application
 initAppState();
 
-// 1. Select the div element using the id property
-const app = document.getElementById("app");
-
-// 2. Create new elements programmatically
+// Create new elements programmatically
 const title: HTMLElement = mkCardTitle("Welcome!");
 const description: HTMLElement = mkCardDescription("Press the button to get a task.");
 const button: HTMLElement = mkButton("Get Task", getTask);
@@ -291,5 +295,5 @@ const cardBody: HTMLElement = mkCardBody(title, description, button);
 const card: HTMLElement = mkCard(cardBody);
 const container: HTMLElement = mkContainer(card);
 
-// 3. Append the elements together
-app?.appendChild(container);
+mkApplication(container);
+
