@@ -977,30 +977,35 @@ The `updateView` function is also completely new. Now we set the **title** and *
 function updateView(currentState: State): void {
     let new_title_text: HTMLElement | null = document.getElementById("display_title")
     let new_body_text: HTMLElement | null = document.getElementById("display_description")
+    let button: HTMLButtonElement | null = document.getElementById("display-button") as HTMLButtonElement;
 
-    if (new_title_text && new_body_text) {
+    if (new_title_text && new_body_text && button) {
         switch (currentState.app_state) {
             case "start": {
                 new_title_text.textContent = "Welcome again";
                 new_body_text.textContent = "Press the button to get a task.";
+                button.disabled = false;
                 break;
             }
 
             case "fetchingTask": {
                 new_title_text.textContent = "Fetching Task";
                 new_body_text.textContent = "Please be patient.";
+                button.disabled = true;
                 break;
             }
 
             case "gotTask": {
                 new_title_text.textContent = currentState.current_task.title;
                 new_body_text.textContent = currentState.current_task.description;
+                button.disabled = false;
                 break;
             }
 
             case "error": {
                 new_title_text.textContent = "Ups ...";
                 new_body_text.textContent = currentState.error_message;
+                button.disabled = false;
                 break;
             }
         }
@@ -1017,6 +1022,7 @@ function mkButton(text: string, action: () => void): HTMLElement {
     let element: HTMLElement = document.createElement("button");
     element.textContent = text;
     element.addEventListener("click", action);
+    element.setAttribute("id", "display-button");
     element.setAttribute("type", "button");
     element.setAttribute("class", "btn btn-primary");
     element.setAttribute("style", "margin:15px;");
@@ -1095,6 +1101,8 @@ Run the app again.
 
 When pressing the button the first time, the app is in the fetching state long enough for you to see it.
 This is because the heroku server shuts down automatically when not used. We use it here to verify that our visulalization of the fetching state looks as expected. Once the server has started up, this state is quite short and most of the time you will not see it. 
+
+The `Get Task` button has been disabled in the fetching state, so the user cannot presse it a second time while waiting.
 
 ![Image of Fetching Please Wait screen](images/Fetching.png)
 
