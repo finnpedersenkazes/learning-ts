@@ -183,30 +183,35 @@ function getTask(): void {
 function updateView(currentState: State): void {
     let new_title_text: HTMLElement | null = document.getElementById("display_title")
     let new_body_text: HTMLElement | null = document.getElementById("display_description")
+    let button: HTMLButtonElement | null = document.getElementById("display-button") as HTMLButtonElement;
 
-    if (new_title_text && new_body_text) {
+    if (new_title_text && new_body_text && button) {
         switch (currentState.app_state) {
             case "start": {
                 new_title_text.textContent = "Welcome again";
                 new_body_text.textContent = "Press the button to get a task.";
+                button.disabled = false;
                 break;
             }
 
             case "fetchingTask": {
                 new_title_text.textContent = "Fetching Task";
                 new_body_text.textContent = "Please be patient.";
+                button.disabled = true;
                 break;
             }
 
             case "gotTask": {
                 new_title_text.textContent = currentState.current_task.title;
                 new_body_text.textContent = currentState.current_task.description;
+                button.disabled = false;
                 break;
             }
 
             case "error": {
                 new_title_text.textContent = "Ups ...";
                 new_body_text.textContent = currentState.error_message;
+                button.disabled = false;
                 break;
             }
         }
@@ -221,6 +226,7 @@ function mkButton(text: string, action: () => void): HTMLElement {
     let element: HTMLElement = document.createElement("button");
     element.textContent = text;
     element.addEventListener("click", action);
+    element.setAttribute("id", "display-button");
     element.setAttribute("type", "button");
     element.setAttribute("class", "btn btn-primary");
     element.setAttribute("style", "margin:15px;");
@@ -282,9 +288,7 @@ const description: HTMLElement = mkCardDescription("Press the button to get a ta
 const button: HTMLElement = mkButton("Get Task", getTask);
 
 const cardBody: HTMLElement = mkCardBody(title, description, button);
-
 const card: HTMLElement = mkCard(cardBody);
-
 const container: HTMLElement = mkContainer(card);
 
 // 3. Append the elements together
