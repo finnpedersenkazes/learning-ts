@@ -1,3 +1,3 @@
-import { runApplication } from "./task";
+import { runApplication } from "./webelement";
 
 runApplication();
