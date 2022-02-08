@@ -7,3 +7,7 @@
 
 # Desktop Services Store on macOS
 **/.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/

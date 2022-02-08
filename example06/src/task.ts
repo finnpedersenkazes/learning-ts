@@ -39,20 +39,3 @@ export class TaskEntity {
         return initialTask;
     }
 }
-
-export function formatTaskEntity(task: any): TaskType {
-    return {
-        id: task.id,
-        title: task.title,
-        description: task.description,
-        urgency: task.urgency,
-        duration_minutes: task.duration_minutes,
-        attention_date: task.attention_date,
-        deadline: task.deadline,
-        planned_date: task.planned_date,
-        planned_starting_time: task.planned_starting_time,
-        status: task.status,
-        created_at: task.created_at,
-        updated_at: task.updated_at,
-    };
-  }

@@ -34,6 +34,7 @@ export class State {
         let state: StateType = initialState;
         state.app_state = "error";
         state.error_message = error_message;
+        state.success = false;
         return state;
     }
 
@@ -49,4 +50,23 @@ export class State {
         state.current_task = task;
         return state;
     }
+}
+
+export function sameState(state1: StateType, state2: StateType): boolean {
+    let condition1 = (state1.success === state2.success);
+    if (!condition1) return false;
+
+    let condition2 = (state1.app_state === state2.app_state);
+    if (!condition2) return false;
+
+    let condition3 = (state1.error_message === state2.error_message);
+    if (!condition3) return false;
+
+    let condition4 = (state1.current_task.id === state2.current_task.id);
+    if (!condition4) return false;
+
+    let condition5 = (state1.current_task.updated_at === state2.current_task.updated_at);
+    if (!condition5) return false;
+
+    return true;
 }

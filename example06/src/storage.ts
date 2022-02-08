@@ -1,4 +1,4 @@
-import { StateType, State } from "./state"
+import { StateType, State } from "./state";
 
 // This is the key to the storage. It must be unique. Do not change.
 const storageKey: string = "app_state";
@@ -48,6 +48,14 @@ export function clearAppState(): void {
     sessionStorage.removeItem(storageKey);
 }
 
+export function existsAppState(): boolean {
+  if (sessionStorage.getItem(storageKey)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function reportState(where: string, state: StateType): void {
     console.log("----------------------------------------")
     console.log(`${where}:`);
@@ -57,6 +65,3 @@ function reportState(where: string, state: StateType): void {
     console.log(`        Task ID..: ${state.current_task.id}`);
     console.log(`        Title....: ${state.current_task.title}`);
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
-

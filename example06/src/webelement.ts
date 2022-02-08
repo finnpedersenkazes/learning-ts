@@ -1,4 +1,4 @@
-import { TaskType, formatTaskEntity } from "./task";
+import { TaskType } from "./task";
 import { StateType } from "./state"
 import { setAppState, getAppState, initAppState } from "./storage"
 
@@ -6,6 +6,24 @@ import { setAppState, getAppState, initAppState } from "./storage"
 const DEBUGMODE: boolean = false;
 const TASKS_API: string = "https://taskmanager01-api.herokuapp.com/tasks";
 let TASK_ID: number = 196; // Starting somewhere in the list
+
+function formatTaskEntity(task: any): TaskType {
+    return {
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        urgency: task.urgency,
+        duration_minutes: task.duration_minutes,
+        attention_date: task.attention_date,
+        deadline: task.deadline,
+        planned_date: task.planned_date,
+        planned_starting_time: task.planned_starting_time,
+        status: task.status,
+        created_at: task.created_at,
+        updated_at: task.updated_at,
+    };
+  }
+
 
 // Update function
 function loadTask(id: number): void {
@@ -28,7 +46,7 @@ function loadTask(id: number): void {
             setAppState(newState);
             updateView(newState);
         })
-        .catch(function(error): void {
+        .catch(function(error: string): void {
             newState.app_state = "error";
             newState.error_message = error;
             setAppState(newState);
