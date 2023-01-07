@@ -134,7 +134,7 @@ Now let us test that it works.
 
 Copy this into your `main.ts` file and save it.
 
-```
+```TypeScript
 function greeter(person: string) {
     return "Hello, " + person;
 }
@@ -199,7 +199,7 @@ To run our program from the browser we have to point to our generated JavaScript
 
 Between `<body>` and `</body>` insert this line
 
-```
+```html
 <body>
     <script src="dist/main.js"></script>
 </body>
@@ -231,7 +231,7 @@ We are going to use the example from [DOM Manipulation](https://www.typescriptla
 
 Open the `index.html` file and insert the following line right after the `<body>` tag and before the `<script>` tag.
 
-```
+```html
 <body>
     <div id="app"></div>
     <script src="dist/main.js"></script>
@@ -244,7 +244,7 @@ Save the index.html file and open the `main.ts` file.
 
 We are going to replace this
 
-```
+```html
 document.body.textContent = greeter(user);
 ```
 
@@ -323,7 +323,7 @@ Don't forget to change the title to **Example 03**.
 
 Solution:
 
-```
+```TypeScript
 // Functions
 
 function non_repeating_character(str: string): string {
@@ -348,7 +348,7 @@ function occurences(element: string, array: string[] ): number {
 }
 ```
 
-```
+```TypeScript
 // Test input and expected results
 
 const input1: string = "agettkgaeee";
@@ -370,7 +370,7 @@ function present_answer(str: string, result: string, expected: string) {
 }
 ```
 
-```
+```TypeScript
 // Manipulating the DOM
 
 // 1. Select the div element using the id property
@@ -446,7 +446,7 @@ We will start by defining the strucure of the State, the possible legal states a
 - `favorite_language` if we are in the success state, this field contains our current favorite language.
 - `error_message` if we are in the failed state, this field contains an error message that we can present to the user.
 
-```
+```TypeScript
 type State = {
     success: boolean,
     favorite_language: string,
@@ -456,7 +456,7 @@ type State = {
 
 The we are going to specify three legal states the app can be in. Two success states and one failure.
 
-```
+```TypeScript
 const legalState1: State = { success: true, favorite_language: "JavaScript", error_message: "" };
 const legalState2: State = { success: true, favorite_language: "Python", error_message: "" };
 const failedState: State = { success: false, favorite_language: "", error_message: "Did not get state from session storage." };
@@ -464,7 +464,7 @@ const failedState: State = { success: false, favorite_language: "", error_messag
 
 Finaly we decide that our initial state will be the first legal state.
 
-```
+```TypeScript
 const initialState: State = legalState1;
 
 ```
@@ -478,7 +478,7 @@ To keep track of our state we are going to use the `sessionStorage` functionalit
 We need to be able to initialize the state, get the state and set the state to a new value.
 These functions help us with just that. Plus a function to report what state we are in to the console.log if we need to debug what is going on.
 
-```
+```TypeScript
 // This is the key to the storage. It must be unique. Do not change.
 const storageKey: string = "app_state";
 
@@ -519,7 +519,7 @@ Then we need to be able to update our state when we click the button and we need
 
 Of cause it would have been nice to write
 
-```
+```TypeScript
 function sameState(state1: State, state2: State): boolean {
    return (state1 == state2);
 }
@@ -528,7 +528,7 @@ function sameState(state1: State, state2: State): boolean {
 
 But that is not how the world works. We have to be explicit about what it means to compare two states. And compare of objects in JavaScript is a chapter in itself.
 
-```
+```TypeScript
 function sameState(state1: State, state2: State): boolean {
     if (state1.success == state2.success) {
         if (state1.success) {
@@ -568,7 +568,7 @@ Now we can initialize and update our state.
 
 Finaly we are going to display the state to the user. The View in the MVC and MVU patterns.
 
-```
+```TypeScript
 // BUILDING OUR WEB PAGE
 // Initialize the application
 initAppState();
@@ -608,7 +608,7 @@ The important part here is that we have a static part, an event part and a dynam
 Finally we need the two missing pieces. To initialize the view and to update the view.
 
 
-```
+```TypeScript
 function initView(): void {
     let currentState: State = getAppState();
     if (body_text) {
@@ -644,14 +644,14 @@ Now while that is very nice, feature wise, it could look a bit better and now is
 
 Copy this line into the `<head>` tag before your title.
 
-```
+```html
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 ```
 
 You can find it [here](https://getbootstrap.com/docs/5.1/getting-started/introduction/#css)
 
 
-```
+```html
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -664,7 +664,7 @@ You can find it [here](https://getbootstrap.com/docs/5.1/getting-started/introdu
 Now open your main.ts file and update the view part with this.
 
 
-```
+```TypeScript
 
 // 1. Select the div element using the id property
 const app = document.getElementById("app");
@@ -728,7 +728,7 @@ The API: https://taskmanager01-api.herokuapp.com/tasks/
 
 Copy/paste the link to the browser. In return you get a list of tasks.
 
-```
+```json
 [
     {
         "id": 196,
@@ -764,7 +764,7 @@ Copy/paste the link to the browser. In return you get a list of tasks.
 Now take the id from the first record and add it to the link https://taskmanager01-api.herokuapp.com/tasks/196
 Now you get just the one task.
 
-```
+```json
 {
     "id": 196,
     "title": "Nick L. Andime",
@@ -805,7 +805,7 @@ This is the plan.
 
 Start by defining the type TaskEntity and create an initialTask. The initialTask is like the number zero or the empty string.
 
-```
+```TypeScript
 // Task entity
 type TaskEntity = {
     id: number,
@@ -842,13 +842,13 @@ Extend the State with with a `current_task` of type `TaskEntity` and a new `app_
 The app_state completes the success value with more information.
 It basically defines the four legal states our app can be in.
 
-```
+```TypeScript
 type AppStates = "start" | "fetchingTask" | "gotTask" | "error" ;
 ```
 
 Now our state looks like this:
 
-```
+```TypeScript
 type State = {
     success: boolean,
     app_state: AppStates,
@@ -860,7 +860,7 @@ type State = {
 
 We define two known states. The initial state and the failed state, if something goes wrong with getting the state from the session storage.
 
-```
+```TypeScript
 // Define the failed states the app can be in.
 const failedState: State = {
     success: false,
@@ -886,7 +886,7 @@ An illigal state would, for example, be to have success == true while having an 
 
 It is only in the `gotTask` state that we have a `current_task` and it is only in the `error` state that we have an `error_message`.
 
-```
+```TypeScript
 function setAppState(newState: State): void {
     switch (newState.app_state) {
         case "start":
@@ -921,7 +921,7 @@ Now we need to write a new function to get our record from the API and return a 
 
 First I define the url and a task id.
 
-```
+```TypeScript
 const TASKS_API: string = "https://taskmanager01-api.herokuapp.com/tasks";
 let TASK_ID: number = 195; // Starting somewhere in the list
 ```
@@ -931,7 +931,7 @@ Then the loadTask function that will attempt to get the task from the API.
 If the fetch function returns a json response we update our state with the task and changes the `app_state` to `gotTask`.
 Should the fetch fail, for example if you have no intenet access, then we update our state with an error message and changes the `app_state` to `error`.
 
-```
+```TypeScript
 function loadTask(id: number): void {
     let url: string = `${TASKS_API}/${TASK_ID}`;
     let newState: State = getAppState();
@@ -963,7 +963,7 @@ function loadTask(id: number): void {
 
 And finally the `getTask` that is going to be called when we click the button.
 
-```
+```TypeScript
 function getTask(): void {
     loadTask(TASK_ID);
     TASK_ID++ // Look for next task
@@ -973,7 +973,7 @@ function getTask(): void {
 The `updateView` function is also completely new. Now we set the **title** and **body** depending on the `app_state`.
 
 
-```
+```TypeScript
 function updateView(currentState: State): void {
     let new_title_text: HTMLElement | null = document.getElementById("display_title")
     let new_body_text: HTMLElement | null = document.getElementById("display_description")
@@ -1017,7 +1017,7 @@ function updateView(currentState: State): void {
 
 Finally I have build a set of helper functions to build my html elements.
 
-```
+```TypeScript
 function mkButton(text: string, action: () => void): HTMLElement {
     let element: HTMLElement = document.createElement("button");
     element.textContent = text;
@@ -1075,7 +1075,7 @@ function mkCardDescription(text: string): HTMLElement {
 
 And now the definition of the HTML elements looks a bit simpler.
 
-```
+```TypeScript
 // Initialize the application
 initAppState();
 
