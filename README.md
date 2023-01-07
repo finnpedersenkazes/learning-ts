@@ -152,7 +152,7 @@ You should now have a new folder `dist` with a new file in it `main.js`.
 
 It should look like this.
 
-```
+```TypeScript
 "use strict";
 function greeter(person) {
     return "Hello, " + person;
@@ -177,7 +177,7 @@ In the first line as the first character type an esclamation mark ! followed by 
 
 becomes
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
